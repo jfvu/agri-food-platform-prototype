@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>央企农业食材平台高保真原型</title>
+  <link rel="preconnect" href="https://images.unsplash.com" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --ink: #17211b;
+      --muted: #66736b;
+      --line: #dde5df;
+      --paper: #f7f8f5;
+      --panel: #ffffff;
+      --green: #1f7a4d;
+      --green-soft: #e8f4ed;
+      --gold: #b8842f;
+      --gold-soft: #fff4df;
+      --tomato: #c84b31;
+      --blue: #275f9f;
+      --shadow: 0 20px 50px rgba(20, 39, 29, .12);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background:
+        linear-gradient(180deg, rgba(232,244,237,.88), rgba(247,248,245,.98) 42%),
+        url("https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1800&q=80") center top / cover fixed;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    .shell {
+      min-height: 100vh;
+      padding: 28px;
+      backdrop-filter: blur(2px);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      max-width: 1400px;
+      margin: 0 auto 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--green);
+      border-radius: 8px;
+      box-shadow: 0 12px 26px rgba(31,122,77,.28);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+
+    .brand p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .switcher {
+      display: flex;
+      gap: 8px;
+      padding: 5px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(221,229,223,.9);
+      border-radius: 8px;
+      box-shadow: 0 10px 28px rgba(23,33,27,.08);
+    }
+
+    .switcher button {
+      border: 0;
+      padding: 9px 14px;
+      color: var(--muted);
+      background: transparent;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+
+    .switcher button.active {
+      color: #fff;
+      background: var(--green);
+    }
+
+    .stage {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .view { display: none; }
+    .view.active { display: block; }
+
+    .prototype-grid {
+      display: grid;
+      grid-template-columns: 390px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .phone {
+      width: 390px;
+      height: 844px;
+      padding: 13px;
+      background: #101715;
+      border-radius: 38px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 22px;
+    }
+
+    .phone-screen {
+      height: 100%;
+      overflow: hidden;
+      background: var(--paper);
+      border-radius: 28px;
+      position: relative;
+    }
+
+    .status {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 20px 6px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .mini-scroll {
+      height: 754px;
+      overflow-y: auto;
+      padding-bottom: 86px;
+    }
+
+    .mini-scroll::-webkit-scrollbar { width: 0; }
+
+    .mini-head {
+      padding: 8px 16px 12px;
+      background: #fff;
+    }
+
+    .search {
+      height: 38px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 12px;
+      color: var(--muted);
+      background: #f1f4f1;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+
+    .hero {
+      margin: 12px 16px;
+      min-height: 160px;
+      padding: 18px;
+      overflow: hidden;
+      color: #fff;
+      background:
+        linear-gradient(90deg, rgba(20,56,35,.92), rgba(20,56,35,.42)),
+        url("https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=900&q=85") center / cover;
+      border-radius: 8px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      min-height: 24px;
+      padding: 3px 8px;
+      font-size: 11px;
+      color: #fff;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 6px;
+    }
+
+    .hero h2 {
+      max-width: 230px;
+      margin: 15px 0 8px;
+      font-size: 25px;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 240px;
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.55;
+      color: rgba(255,255,255,.88);
+    }
+
+    .quick {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 9px;
+      margin: 0 16px 14px;
+    }
+
+    .quick-item {
+      min-height: 72px;
+      display: grid;
+      place-items: center;
+      gap: 5px;
+      padding: 9px 4px;
+      color: var(--ink);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-size: 12px;
+    }
+
+    .quick-item i {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      color: var(--green);
+      background: var(--green-soft);
+      border-radius: 7px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 18px 16px 10px;
+    }
+
+    .section-title h3 {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+
+    .section-title span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .brand-row {
+      display: flex;
+      gap: 10px;
+      padding: 0 16px;
+      overflow-x: auto;
+    }
+
+    .brand-card {
+      min-width: 138px;
+      padding: 11px;
+      color: #fff;
+      background: var(--green);
+      border-radius: 8px;
+    }
+
+    .brand-card:nth-child(2) { background: var(--blue); }
+    .brand-card:nth-child(3) { background: var(--gold); }
+
+    .brand-card b {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 15px;
+    }
+
+    .brand-card small {
+      color: rgba(255,255,255,.82);
+      font-size: 11px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 0 16px 18px;
+    }
+
+    .product-card {
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 112px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .product-body {
+      padding: 9px;
+    }
+
+    .product-body h4 {
+      height: 38px;
+      margin: 0 0 7px;
+      font-size: 14px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .supplier {
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .price-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .price {
+      color: var(--tomato);
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .coupon-dot {
+      padding: 2px 5px;
+      color: var(--gold);
+      background: var(--gold-soft);
+      border-radius: 5px;
+      font-size: 10px;
+    }
+
+    .tabbar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      height: 72px;
+      padding: 8px 10px 10px;
+      background: rgba(255,255,255,.96);
+      border-top: 1px solid var(--line);
+    }
+
+    .tabbar button {
+      display: grid;
+      place-items: center;
+      gap: 3px;
+      color: var(--muted);
+      border: 0;
+      background: transparent;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .tabbar button.active { color: var(--green); }
+
+    .side-panel {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .proto-card {
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(221,229,223,.95);
+      border-radius: 8px;
+      box-shadow: 0 12px 34px rgba(23,33,27,.08);
+      overflow: hidden;
+    }
+
+    .proto-card .card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .proto-card h3 {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+
+    .proto-card .body { padding: 16px; }
+
+    .order-box {
+      display: grid;
+      gap: 10px;
+    }
+
+    .vendor-order {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .vendor-order header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      color: var(--green);
+      background: var(--green-soft);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 7px 0;
+      color: var(--muted);
+      border-top: 1px dashed var(--line);
+      font-size: 12px;
+    }
+
+    .coupon-card {
+      padding: 14px;
+      color: #5b3500;
+      background:
+        radial-gradient(circle at 0 50%, transparent 9px, var(--gold-soft) 10px),
+        linear-gradient(135deg, #fff8e8, #ffe3a3);
+      border: 1px solid #f1cf88;
+      border-radius: 8px;
+    }
+
+    .coupon-card b {
+      display: block;
+      font-size: 26px;
+      margin-bottom: 4px;
+    }
+
+    .coupon-card span {
+      color: #8a641c;
+      font-size: 12px;
+    }
+
+    .settle-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .settle-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .settle-item p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .btn {
+      border: 0;
+      padding: 9px 12px;
+      color: #fff;
+      background: var(--green);
+      border-radius: 7px;
+      cursor: pointer;
+    }
+
+    .btn.secondary {
+      color: var(--ink);
+      background: #edf2ef;
+    }
+
+    .desktop {
+      min-height: 820px;
+      display: grid;
+      grid-template-columns: 236px 1fr;
+      background: rgba(255,255,255,.96);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .sidebar {
+      padding: 20px 14px;
+      color: #fff;
+      background: #183024;
+    }
+
+    .sidebar h2 {
+      margin: 0 0 22px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 40px;
+      padding: 9px 10px;
+      color: rgba(255,255,255,.74);
+      border-radius: 7px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .nav-item.active {
+      color: #fff;
+      background: rgba(255,255,255,.12);
+    }
+
+    .work {
+      min-width: 0;
+      padding: 22px;
+      background: #f5f7f4;
+    }
+
+    .work-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .work-head h2 {
+      margin: 0 0 5px;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    .work-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .metric {
+      padding: 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .metric b {
+      display: block;
+      margin-top: 8px;
+      font-size: 24px;
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(320px, .8fr);
+      gap: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 13px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      background: #fbfcfa;
+    }
+
+    .table-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .table-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .table-title h3 {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+
+    .flow {
+      display: grid;
+      gap: 10px;
+      padding: 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .flow-step {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .flow-step i {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      color: var(--green);
+      background: var(--green-soft);
+      border-radius: 7px;
+      font-style: normal;
+      font-weight: 800;
+    }
+
+    .flow-step b { display: block; margin-bottom: 3px; }
+    .flow-step p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+
+    .supplier-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 18px;
+    }
+
+    .shipment-card {
+      display: grid;
+      gap: 12px;
+      padding: 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    .shipment-card header {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .field input, .field select {
+      width: 100%;
+      height: 38px;
+      padding: 0 10px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+    }
+
+    @media (max-width: 1180px) {
+      .prototype-grid,
+      .admin-grid,
+      .supplier-layout {
+        grid-template-columns: 1fr;
+      }
+      .phone { position: static; margin: 0 auto; }
+      .side-panel { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 720px) {
+      .shell { padding: 14px; }
+      .topbar { align-items: stretch; flex-direction: column; }
+      .switcher { overflow-x: auto; }
+      .phone { width: 100%; height: 820px; border-radius: 28px; }
+      .desktop { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .metrics { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark"><i data-lucide="wheat"></i></div>
+        <div>
+          <h1>央企农业食材平台高保真原型</h1>
+          <p>开放购买、企业电子券、多供应商直发、平台统一结算</p>
+        </div>
+      </div>
+      <nav class="switcher" aria-label="原型视图切换">
+        <button class="active" data-view="mini">C 端小程序</button>
+        <button data-view="admin">平台后台</button>
+        <button data-view="supplier">供应商后台</button>
+      </nav>
+    </header>
+
+    <main class="stage">
+      <section class="view active" id="mini">
+        <div class="prototype-grid">
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="status"><span>09:41</span><span>5G 100%</span></div>
+              <div class="mini-scroll">
+                <div class="mini-head">
+                  <div class="search"><i data-lucide="search" width="16"></i><span>搜索北大荒大米、中粮粮油</span></div>
+                </div>
+                <section class="hero">
+                  <span class="tag"><i data-lucide="badge-check" width="13"></i>央企/国企优选</span>
+                  <h2>好食材，由供应商直发到家</h2>
+                  <p>支持企业福利电子券、微信和支付宝支付，多供应商商品可一次结算。</p>
+                </section>
+                <div class="quick">
+                  <div class="quick-item"><i><i data-lucide="ticket" width="17"></i></i><span>绑电子券</span></div>
+                  <div class="quick-item"><i><i data-lucide="package-check" width="17"></i></i><span>我的订单</span></div>
+                  <div class="quick-item"><i><i data-lucide="receipt-text" width="17"></i></i><span>开发票</span></div>
+                  <div class="quick-item"><i><i data-lucide="headphones" width="17"></i></i><span>客服</span></div>
+                </div>
+                <div class="section-title"><h3>品牌专区</h3><span>供应商直发包邮</span></div>
+                <div class="brand-row">
+                  <div class="brand-card"><b>北大荒</b><small>大米 杂粮 农垦优选</small></div>
+                  <div class="brand-card"><b>中粮</b><small>粮油 调味 福利礼盒</small></div>
+                  <div class="brand-card"><b>首农</b><small>生鲜 副食 北京优选</small></div>
+                </div>
+                <div class="section-title"><h3>今日推荐</h3><span>全部商品</span></div>
+                <div class="product-grid">
+                  <article class="product-card">
+                    <img alt="五常大米" src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=500&q=85" />
+                    <div class="product-body">
+                      <h4>北大荒寒地长粒香大米 5kg</h4>
+                      <div class="supplier">北大荒集团发货</div>
+                      <div class="price-line"><span class="price">¥79</span><span class="coupon-dot">券可用</span></div>
+                    </div>
+                  </article>
+                  <article class="product-card">
+                    <img alt="食用油" src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=500&q=85" />
+                    <div class="product-body">
+                      <h4>中粮压榨葵花籽油 5L</h4>
+                      <div class="supplier">中粮直营发货</div>
+                      <div class="price-line"><span class="price">¥96</span><span class="coupon-dot">包邮</span></div>
+                    </div>
+                  </article>
+                  <article class="product-card">
+                    <img alt="杂粮礼盒" src="https://images.unsplash.com/photo-1515543904379-3d757afe72e4?auto=format&fit=crop&w=500&q=85" />
+                    <div class="product-body">
+                      <h4>央企农品五谷杂粮礼盒</h4>
+                      <div class="supplier">平台优选组合</div>
+                      <div class="price-line"><span class="price">¥128</span><span class="coupon-dot">券可用</span></div>
+                    </div>
+                  </article>
+                  <article class="product-card">
+                    <img alt="蔬菜" src="https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?auto=format&fit=crop&w=500&q=85" />
+                    <div class="product-body">
+                      <h4>首农安心蔬菜组合装</h4>
+                      <div class="supplier">首农供应链发货</div>
+                      <div class="price-line"><span class="price">¥59</span><span class="coupon-dot">新鲜</span></div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="tabbar">
+                <button class="active"><i data-lucide="home" width="19"></i>首页</button>
+                <button><i data-lucide="layout-grid" width="19"></i>分类</button>
+                <button><i data-lucide="shopping-cart" width="19"></i>购物车</button>
+                <button><i data-lucide="user" width="19"></i>我的</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="side-panel">
+            <article class="proto-card">
+              <div class="card-head"><h3>订单确认：按供应商分组</h3><span class="status-pill">待支付</span></div>
+              <div class="body order-box">
+                <div class="vendor-order">
+                  <header><span>北大荒集团</span><span>包邮</span></header>
+                  <div class="meta-row"><span>寒地长粒香大米 5kg × 1</span><b>¥79</b></div>
+                  <div class="meta-row"><span>发货方式</span><span>供应商直发</span></div>
+                </div>
+                <div class="vendor-order">
+                  <header><span>中粮直营</span><span>包邮</span></header>
+                  <div class="meta-row"><span>压榨葵花籽油 5L × 1</span><b>¥96</b></div>
+                  <div class="meta-row"><span>发货方式</span><span>供应商直发</span></div>
+                </div>
+                <div class="meta-row"><span>商品总额</span><b>¥175</b></div>
+                <div class="meta-row"><span>企业电子券抵扣</span><b>-¥100</b></div>
+                <div class="meta-row"><span>微信支付</span><b>¥75</b></div>
+                <button class="btn">提交订单并支付</button>
+              </div>
+            </article>
+
+            <article class="proto-card">
+              <div class="card-head"><h3>电子券绑定与核销</h3><span class="status-pill">可用</span></div>
+              <div class="body">
+                <div class="coupon-card">
+                  <b>¥100</b>
+                  <strong>富力企业福利食材券</strong><br />
+                  <span>有效期至 2026-12-31 · 限平台商品使用 · 过期失效</span>
+                </div>
+                <div style="height:12px"></div>
+                <div class="form-grid">
+                  <div class="field"><label>券号</label><input value="FL2026 8891 0256" /></div>
+                  <div class="field"><label>密码</label><input value="••••••" /></div>
+                </div>
+                <div style="height:12px"></div>
+                <button class="btn">绑定电子券</button>
+                <button class="btn secondary">扫码绑定</button>
+              </div>
+            </article>
+
+            <article class="proto-card">
+              <div class="card-head"><h3>支付成功后的用户提示</h3><span class="status-pill">已拆单</span></div>
+              <div class="body settle-list">
+                <div class="settle-item"><div><b>主订单 202605180001</b><p>共 2 个供应商子订单，不同商品可能分开发货。</p></div><button class="btn secondary">查看</button></div>
+                <div class="settle-item"><div><b>北大荒子订单</b><p>待供应商发货，预计 48 小时内录入物流。</p></div><span class="status-pill">待发货</span></div>
+                <div class="settle-item"><div><b>中粮子订单</b><p>供应商已接单，包邮配送。</p></div><span class="status-pill">待发货</span></div>
+              </div>
+            </article>
+
+            <article class="proto-card">
+              <div class="card-head"><h3>页面设计原则</h3></div>
+              <div class="body">
+                <div class="flow">
+                  <div class="flow-step"><i>1</i><div><b>弱化业主认证</b><p>一期只做手机号注册，房产认证作为后续扩展。</p></div></div>
+                  <div class="flow-step"><i>2</i><div><b>突出电子券入口</b><p>实体卡用户能在首页、我的、结算页快速绑定和使用。</p></div></div>
+                  <div class="flow-step"><i>3</i><div><b>清楚告知拆单</b><p>按供应商发货和售后，避免用户误以为一个包裹统一发出。</p></div></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="admin">
+        <div class="desktop">
+          <aside class="sidebar">
+            <h2>平台管理后台</h2>
+            <div class="nav-item active"><i data-lucide="layout-dashboard" width="18"></i>工作台</div>
+            <div class="nav-item"><i data-lucide="store" width="18"></i>供应商管理</div>
+            <div class="nav-item"><i data-lucide="package" width="18"></i>商品管理</div>
+            <div class="nav-item"><i data-lucide="shopping-bag" width="18"></i>订单管理</div>
+            <div class="nav-item"><i data-lucide="ticket" width="18"></i>电子券管理</div>
+            <div class="nav-item"><i data-lucide="circle-dollar-sign" width="18"></i>结算管理</div>
+            <div class="nav-item"><i data-lucide="receipt-text" width="18"></i>发票管理</div>
+            <div class="nav-item"><i data-lucide="shield-check" width="18"></i>权限日志</div>
+          </aside>
+          <div class="work">
+            <header class="work-head">
+              <div>
+                <h2>运营工作台</h2>
+                <p>统一查看订单、电子券核销、供应商履约和结算状态。</p>
+              </div>
+              <button class="btn">生成电子券批次</button>
+            </header>
+            <div class="metrics">
+              <div class="metric"><span>今日销售额</span><b>¥86,420</b></div>
+              <div class="metric"><span>电子券核销</span><b>¥18,600</b></div>
+              <div class="metric"><span>待发货子订单</span><b>126</b></div>
+              <div class="metric"><span>供应商待结算</span><b>¥234,900</b></div>
+            </div>
+            <div class="admin-grid">
+              <div class="table-card">
+                <div class="table-title"><h3>主订单与供应商拆单</h3><button class="btn secondary">导出</button></div>
+                <table>
+                  <thead>
+                    <tr><th>主订单号</th><th>用户</th><th>金额</th><th>支付构成</th><th>子订单</th><th>状态</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>202605180001</td><td>138****0921</td><td>¥175</td><td>券 ¥100 + 微信 ¥75</td><td>北大荒 / 中粮</td><td><span class="status-pill">待发货</span></td></tr>
+                    <tr><td>202605180002</td><td>186****7730</td><td>¥328</td><td>支付宝 ¥328</td><td>首农</td><td><span class="status-pill">已发货</span></td></tr>
+                    <tr><td>202605180003</td><td>159****2688</td><td>¥560</td><td>券 ¥500 + 微信 ¥60</td><td>中粮 / 平台礼盒</td><td><span class="status-pill">部分发货</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="flow">
+                <div class="flow-step"><i>券</i><div><b>企业采购电子券</b><p>按采购方、批次、面额、有效期生成券码，导出用于实体制卡。</p></div></div>
+                <div class="flow-step"><i>单</i><div><b>支付后自动拆单</b><p>主订单归用户，子订单归供应商履约和售后。</p></div></div>
+                <div class="flow-step"><i>账</i><div><b>按对象分别结算</b><p>富力/企业按券采购结算，供应商按销售货款结算。</p></div></div>
+              </div>
+            </div>
+            <div style="height:18px"></div>
+            <div class="admin-grid">
+              <div class="table-card">
+                <div class="table-title"><h3>电子券批次</h3><button class="btn secondary">新增批次</button></div>
+                <table>
+                  <thead><tr><th>批次</th><th>采购方</th><th>总额</th><th>已绑定</th><th>已核销</th><th>状态</th></tr></thead>
+                  <tbody>
+                    <tr><td>FL-2026-端午福利</td><td>富力集团</td><td>¥500,000</td><td>1,284</td><td>¥86,700</td><td><span class="status-pill">生效中</span></td></tr>
+                    <tr><td>QY-农品福利A</td><td>某企业客户</td><td>¥120,000</td><td>306</td><td>¥23,800</td><td><span class="status-pill">生效中</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="table-card">
+                <div class="table-title"><h3>供应商结算</h3><button class="btn secondary">生成结算单</button></div>
+                <table>
+                  <thead><tr><th>供应商</th><th>销售额</th><th>退款</th><th>应结</th></tr></thead>
+                  <tbody>
+                    <tr><td>北大荒</td><td>¥98,400</td><td>¥1,200</td><td>¥97,200</td></tr>
+                    <tr><td>中粮</td><td>¥76,230</td><td>¥860</td><td>¥75,370</td></tr>
+                    <tr><td>首农</td><td>¥42,900</td><td>¥0</td><td>¥42,900</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="supplier">
+        <div class="desktop">
+          <aside class="sidebar">
+            <h2>供应商后台</h2>
+            <div class="nav-item active"><i data-lucide="layout-dashboard" width="18"></i>工作台</div>
+            <div class="nav-item"><i data-lucide="shopping-bag" width="18"></i>待发货订单</div>
+            <div class="nav-item"><i data-lucide="truck" width="18"></i>物流录入</div>
+            <div class="nav-item"><i data-lucide="rotate-ccw" width="18"></i>售后处理</div>
+            <div class="nav-item"><i data-lucide="wallet-cards" width="18"></i>结算单</div>
+            <div class="nav-item"><i data-lucide="building-2" width="18"></i>企业资料</div>
+          </aside>
+          <div class="work">
+            <header class="work-head">
+              <div>
+                <h2>北大荒供应商工作台</h2>
+                <p>只展示本供应商订单、发货、售后和结算数据。</p>
+              </div>
+              <button class="btn">批量导出待发货</button>
+            </header>
+            <div class="metrics">
+              <div class="metric"><span>今日订单</span><b>58</b></div>
+              <div class="metric"><span>待发货</span><b>34</b></div>
+              <div class="metric"><span>售后待处理</span><b>5</b></div>
+              <div class="metric"><span>本月待结算</span><b>¥97,200</b></div>
+            </div>
+            <div class="supplier-layout">
+              <div>
+                <div class="shipment-card">
+                  <header><div><b>子订单 BDH-202605180001-01</b><p style="margin:5px 0 0;color:var(--muted);font-size:12px">来自主订单 202605180001</p></div><span class="status-pill">待发货</span></header>
+                  <div class="meta-row"><span>商品</span><b>寒地长粒香大米 5kg × 1</b></div>
+                  <div class="meta-row"><span>收货人</span><span>王先生 138****0921 北京市朝阳区</span></div>
+                  <div class="form-grid">
+                    <div class="field"><label>物流公司</label><select><option>顺丰速运</option><option>京东物流</option><option>中通快递</option></select></div>
+                    <div class="field"><label>物流单号</label><input value="SF783920184620" /></div>
+                  </div>
+                  <div><button class="btn">确认发货</button> <button class="btn secondary">打印发货单</button></div>
+                </div>
+                <div class="shipment-card">
+                  <header><div><b>子订单 BDH-202605180004-01</b><p style="margin:5px 0 0;color:var(--muted);font-size:12px">来自主订单 202605180004</p></div><span class="status-pill">待发货</span></header>
+                  <div class="meta-row"><span>商品</span><b>五谷杂粮组合装 × 2</b></div>
+                  <div class="meta-row"><span>收货人</span><span>李女士 186****7730 上海市浦东新区</span></div>
+                  <div><button class="btn secondary">查看订单</button></div>
+                </div>
+              </div>
+              <div class="flow">
+                <div class="flow-step"><i>1</i><div><b>接收子订单</b><p>平台收款后，系统把属于本供应商的子订单推送到供应商后台。</p></div></div>
+                <div class="flow-step"><i>2</i><div><b>负责质量与物流</b><p>供应商录入物流并承担商品质量、错发漏发和物流异常处理。</p></div></div>
+                <div class="flow-step"><i>3</i><div><b>进入结算周期</b><p>订单完成且售后期结束后，进入平台与供应商结算范围。</p></div></div>
+                <div class="flow-step"><i>4</i><div><b>售后扣减</b><p>退款、补发等售后成本从对应供应商结算数据中体现。</p></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll(".switcher button");
+    const views = document.querySelectorAll(".view");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        buttons.forEach((item) => item.classList.remove("active"));
+        views.forEach((view) => view.classList.remove("active"));
+        button.classList.add("active");
+        document.getElementById(button.dataset.view).classList.add("active");
+      });
+    });
+
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
