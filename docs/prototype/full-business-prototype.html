@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>央企农业食材平台全业务高保真原型</title>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --ink:#17211b; --muted:#657269; --line:#dfe8e2; --bg:#f5f7f3; --panel:#fff;
+      --green:#1f7a4d; --soft:#e8f4ed; --gold:#b8842f; --gold-soft:#fff2d7;
+      --red:#c84b31; --blue:#245c9c; --dark:#183024; --shadow:0 18px 46px rgba(19,40,28,.12);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(180deg,rgba(233,244,238,.94),rgba(245,247,243,.98) 380px),url("https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1800&q=82") center top/cover fixed}
+    h1,h2,h3,h4,p{letter-spacing:0} button,input,select{font:inherit}
+    .app{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}
+    .rail{position:sticky;top:0;height:100vh;padding:22px 16px;color:#fff;background:rgba(24,48,36,.98);overflow:auto}
+    .brand{display:flex;gap:10px;align-items:center;margin-bottom:18px}
+    .brand i{width:40px;height:40px;display:grid;place-items:center;background:var(--green);border-radius:8px}
+    .brand b{display:block;font-size:16px}.brand span{display:block;color:rgba(255,255,255,.65);font-size:12px;margin-top:2px}
+    .nav-title{margin:18px 8px 8px;color:rgba(255,255,255,.52);font-size:12px}
+    .nav a{display:flex;align-items:center;gap:10px;min-height:40px;padding:9px 10px;color:rgba(255,255,255,.78);text-decoration:none;border-radius:7px;font-size:14px}
+    .nav a:hover,.nav a.active{color:#fff;background:rgba(255,255,255,.13)}
+    .main{padding:28px;min-width:0}.hero{max-width:1320px;margin:0 auto 24px;display:flex;justify-content:space-between;gap:20px;align-items:end}
+    .hero h1{margin:0 0 8px;font-size:31px;line-height:1.15}.hero p{margin:0;color:var(--muted);line-height:1.6;font-size:14px;max-width:720px}
+    .badges{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.badge{display:inline-flex;align-items:center;gap:6px;min-height:28px;padding:5px 9px;border:1px solid var(--line);border-radius:7px;background:rgba(255,255,255,.88);color:var(--green);font-size:12px;font-weight:800}
+    .section{max-width:1320px;margin:0 auto 30px;scroll-margin-top:24px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:14px}
+    .section-head h2{margin:0 0 4px;font-size:22px}.section-head p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+    .phone-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:18px}.desktop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(560px,1fr));gap:18px}
+    .card{background:rgba(255,255,255,.92);border:1px solid rgba(223,232,226,.96);border-radius:8px;box-shadow:var(--shadow);overflow:hidden}
+    .label{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.8)}
+    .label b{font-size:14px}.label span{font-size:12px;color:var(--muted)}
+    .phone{width:258px;height:560px;margin:14px auto 18px;padding:9px;background:#101715;border-radius:30px}.screen{height:100%;position:relative;overflow:hidden;background:var(--bg);border-radius:23px}
+    .status{height:28px;display:flex;justify-content:space-between;padding:9px 14px 0;font-size:10px;font-weight:900}.body{height:488px;overflow-y:auto;padding-bottom:58px}.body::-webkit-scrollbar{width:0}
+    .appbar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;background:#fff;border-bottom:1px solid var(--line)}.appbar h3{margin:0;font-size:15px}
+    .search{height:30px;display:flex;align-items:center;gap:6px;padding:0 9px;color:var(--muted);background:#f0f4f1;border-radius:7px;font-size:11px;white-space:nowrap;overflow:hidden}
+    .mini-hero{margin:10px 11px;padding:13px;min-height:118px;color:#fff;background:linear-gradient(90deg,rgba(20,56,35,.94),rgba(20,56,35,.35)),url("https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=700&q=80") center/cover;border-radius:8px}
+    .mini-hero h4{margin:10px 0 5px;max-width:170px;font-size:18px;line-height:1.15}.mini-hero p{margin:0;max-width:180px;color:rgba(255,255,255,.86);font-size:11px;line-height:1.45}
+    .tag{display:inline-flex;align-items:center;gap:4px;min-height:20px;padding:3px 6px;border-radius:5px;background:rgba(255,255,255,.18);font-size:10px}
+    .quick{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;padding:0 11px 10px}.quick div{display:grid;place-items:center;gap:3px;min-height:52px;background:#fff;border:1px solid var(--line);border-radius:8px;font-size:10px;text-align:center}.quick i{color:var(--green)}
+    .mini-title{display:flex;justify-content:space-between;align-items:center;padding:9px 12px 7px}.mini-title b{font-size:14px}.mini-title span{color:var(--muted);font-size:10px}
+    .chips{display:flex;gap:6px;padding:0 11px 8px;overflow:auto}.chip{flex:0 0 auto;padding:5px 8px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:6px;font-size:11px}.chip.active{color:#fff;background:var(--green);border-color:var(--green)}
+    .goods{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 11px 12px}.good{overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:8px}.good img{width:100%;height:80px;object-fit:cover;display:block}.good div{padding:7px}.good b{display:block;height:30px;font-size:11px;line-height:1.35}.good small{display:block;margin:5px 0;color:var(--muted);font-size:9px}.price{color:var(--red);font-weight:900;font-size:14px}
+    .panel{margin:9px 11px;padding:10px;background:#fff;border:1px solid var(--line);border-radius:8px}.panel h4{margin:0 0 8px;font-size:14px;line-height:1.35}.panel p{margin:0;color:var(--muted);font-size:10px;line-height:1.5}
+    .kv{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-top:1px dashed var(--line);font-size:10px;color:var(--muted)}.kv b{color:var(--ink);text-align:right}
+    .row{display:grid;grid-template-columns:56px 1fr;gap:8px;padding:8px;background:#fff;border:1px solid var(--line);border-radius:8px}.row img{width:56px;height:56px;object-fit:cover;border-radius:7px}.row b{font-size:12px}.row p{margin:4px 0;color:var(--muted);font-size:10px}
+    .coupon{background:linear-gradient(135deg,#fff9e9,#ffe0a0);border-color:#edca85;color:#603800}.coupon .big{display:block;color:#8c5d13;font-size:26px;font-weight:950}
+    .progress{height:8px;background:#edf2ef;border-radius:20px;overflow:hidden;margin:8px 0}.progress span{display:block;height:100%;background:var(--green)}
+    .btn{border:0;min-height:32px;padding:7px 10px;color:#fff;background:var(--green);border-radius:7px;cursor:pointer;font-size:12px;font-weight:800}.btn.alt{color:var(--ink);background:#eef3ef}.btn.gold{background:var(--gold)}
+    .bottom{position:absolute;left:0;right:0;bottom:0;min-height:52px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;padding:7px 8px;background:rgba(255,255,255,.97);border-top:1px solid var(--line)}.bottom span{display:grid;place-items:center;gap:2px;color:var(--muted);font-size:9px}.bottom span.active{color:var(--green)}
+    .paybar{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 11px;background:#fff;border-top:1px solid var(--line)}.paybar b{color:var(--red);font-size:15px}
+    .pill{display:inline-flex;align-items:center;min-height:22px;padding:3px 7px;border-radius:6px;background:var(--soft);color:var(--green);font-size:10px;font-weight:850}.pill.gold{background:var(--gold-soft);color:var(--gold)}.pill.red{background:#fde8e3;color:var(--red)}
+    .desk{min-height:470px;display:grid;grid-template-columns:156px 1fr;background:#f5f7f4;border-radius:8px;overflow:hidden}.side{padding:14px 10px;color:#fff;background:var(--dark)}.side h3{margin:0 0 14px;font-size:14px}.side div{min-height:32px;padding:8px;border-radius:6px;color:rgba(255,255,255,.72);font-size:11px}.side div.active{color:#fff;background:rgba(255,255,255,.12)}
+    .work{min-width:0;padding:14px}.work h3{margin:0 0 4px;font-size:18px}.work>p{margin:0 0 12px;color:var(--muted);font-size:12px}
+    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px}.metric{padding:10px;background:#fff;border:1px solid var(--line);border-radius:8px}.metric span{color:var(--muted);font-size:10px}.metric b{display:block;margin-top:5px;font-size:16px}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);font-size:11px}th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}th{color:var(--muted);background:#fbfcfa;font-size:10px}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:10px}.box{padding:10px;background:#fff;border:1px solid var(--line);border-radius:8px}.box h4{margin:0 0 8px;font-size:13px}
+    .flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start}.flow i{width:28px;height:28px;display:grid;place-items:center;color:var(--green);background:var(--soft);border-radius:6px;font-style:normal;font-weight:900;font-size:11px}.flow b{display:block;font-size:12px;margin-bottom:2px}.flow p{margin:0;color:var(--muted);font-size:10px;line-height:1.45}
+    @media(max-width:980px){.app{grid-template-columns:1fr}.rail{position:static;height:auto}.hero{flex-direction:column;align-items:start}.badges{justify-content:flex-start}.desktop-grid{grid-template-columns:1fr}}
+    @media(max-width:680px){.main{padding:16px}.desk{grid-template-columns:1fr}.side{display:none}.metrics,.split{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="rail">
+      <div class="brand"><i><i data-lucide="wheat" width="22"></i></i><div><b>全业务原型</b><span>团购/物业费/三端</span></div></div>
+      <nav class="nav">
+        <div class="nav-title">用户端</div>
+        <a class="active" href="#user"><i data-lucide="smartphone" width="16"></i>商城与团购</a>
+        <a href="#benefits"><i data-lucide="badge-percent" width="16"></i>物业费减免</a>
+        <a href="#fulfillment"><i data-lucide="map-pin" width="16"></i>自提与售后</a>
+        <div class="nav-title">角色端</div>
+        <a href="#leader"><i data-lucide="users" width="16"></i>团队长端</a>
+        <a href="#admin"><i data-lucide="layout-dashboard" width="16"></i>平台管理端</a>
+        <a href="#supplier"><i data-lucide="truck" width="16"></i>供应商端</a>
+        <a href="#property"><i data-lucide="warehouse" width="16"></i>物业站点端</a>
+        <div class="nav-title">规则</div>
+        <a href="#rules"><i data-lucide="git-branch" width="16"></i>业务规则总览</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="hero">
+        <div>
+          <h1>央企农业食材平台全业务高保真原型</h1>
+          <p>覆盖 H5/小程序用户端、团队长开团、自提点核销、物业费减免、平台管理、供应商履约与结算，按完整业务流程组织。</p>
+        </div>
+        <div class="badges">
+          <span class="badge"><i data-lucide="ticket" width="14"></i>电子券</span>
+          <span class="badge"><i data-lucide="users" width="14"></i>团队长</span>
+          <span class="badge"><i data-lucide="badge-percent" width="14"></i>物业费减免</span>
+          <span class="badge"><i data-lucide="warehouse" width="14"></i>物业自提</span>
+          <span class="badge"><i data-lucide="split" width="14"></i>供应商拆单</span>
+        </div>
+      </header>
+
+      <section class="section" id="user">
+        <div class="section-head"><div><h2>用户端：H5/小程序商城与团购</h2><p>用户从私域链接进入，浏览商品、参团、使用电子券和第三方支付。</p></div></div>
+        <div class="phone-grid">
+          <article class="card"><div class="label"><b>01 小程序首页</b><span>商城 + 团购入口</span></div><div class="phone"><div class="screen"><div class="status"><span>09:41</span><span>5G</span></div><div class="body">
+            <div class="appbar"><div class="search"><i data-lucide="search" width="13"></i>搜索北大荒大米、中粮粮油</div></div>
+            <div class="mini-hero"><span class="tag">富力私域优选</span><h4>央企食材团购直达小区</h4><p>电子券、团购、自提、物业费减免一站完成。</p></div>
+            <div class="quick"><div><i data-lucide="users" width="16"></i>团购</div><div><i data-lucide="ticket" width="16"></i>绑券</div><div><i data-lucide="badge-percent" width="16"></i>物业减免</div><div><i data-lucide="map-pin" width="16"></i>自提点</div></div>
+            <div class="mini-title"><b>社区团购</b><span>富力花园团</span></div>
+            <div class="goods"><div class="good"><img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=400&q=80" alt=""><div><b>北大荒长粒香大米</b><small>距成团还差 12 件</small><span class="price">团购 ¥69</span></div></div><div class="good"><img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=400&q=80" alt=""><div><b>中粮葵花籽油</b><small>可物业自提</small><span class="price">团购 ¥88</span></div></div></div>
+          </div><div class="bottom"><span class="active"><i data-lucide="home" width="15"></i>首页</span><span><i data-lucide="users" width="15"></i>团购</span><span><i data-lucide="shopping-cart" width="15"></i>购物车</span><span><i data-lucide="user" width="15"></i>我的</span></div></div></div></article>
+
+          <article class="card"><div class="label"><b>02 H5团购落地页</b><span>私域分享承接</span></div><div class="phone"><div class="screen"><div class="status"><span>09:41</span><span>Safari</span></div><div class="body">
+            <img style="width:100%;height:154px;object-fit:cover;display:block" src="https://images.unsplash.com/photo-1515543904379-3d757afe72e4?auto=format&fit=crop&w=700&q=80" alt="">
+            <div class="panel"><span class="pill gold">富力花园 6月粮油团</span><h4>央企粮油组合团购</h4><div class="kv"><span>团购价</span><b>¥158</b></div><div class="kv"><span>成团规则</span><b>满 50 件</b></div><div class="progress"><span style="width:76%"></span></div><p>已成 38 件，还差 12 件。支持配送到家或物业自提。</p></div>
+            <div class="panel"><h4>团队长</h4><div class="kv"><span>发起人</span><b>张女士 · 富力花园</b></div><div class="kv"><span>奖励</span><b>成团后按有效销售额计算</b></div></div>
+          </div><div class="paybar"><span>团购价 <b>¥158</b></span><button class="btn">立即参团</button></div></div></div></article>
+
+          <article class="card"><div class="label"><b>03 团购确认页</b><span>券 + 自提 + 支付</span></div><div class="phone"><div class="screen"><div class="status"><span>09:41</span><span>5G</span></div><div class="body">
+            <div class="appbar"><h3>确认参团</h3><span class="pill">进行中</span></div>
+            <div class="panel"><h4>富力花园物业自提点</h4><p>北京市朝阳区富力花园物业服务中心，09:00-20:00 可提货。</p><div class="kv"><span>履约方式</span><b>物业自提</b></div></div>
+            <div class="panel"><h4>商品清单</h4><div class="kv"><span>央企粮油组合 × 1</span><b>¥158</b></div><div class="kv"><span>供应商</span><b>中粮直营</b></div></div>
+            <div class="panel coupon"><span class="big">¥50</span><b>企业福利电子券</b><div class="kv"><span>本单抵扣</span><b>-¥50</b></div></div>
+            <div class="panel"><div class="kv"><span>微信支付</span><b>¥108</b></div><div class="kv"><span>计入物业减免</span><b>按实付金额 ¥108</b></div></div>
+          </div><div class="paybar"><span>实付 <b>¥108</b></span><button class="btn">提交支付</button></div></div></div></article>
+
+          <article class="card"><div class="label"><b>04 支付/参团成功</b><span>等待成团</span></div><div class="phone"><div class="screen"><div class="status"><span>09:41</span><span>5G</span></div><div class="body">
+            <div class="panel" style="text-align:center;margin-top:18px"><i data-lucide="circle-check-big" width="48" style="color:var(--green)"></i><h4>参团成功</h4><p>团购达到 50 件后生效，未成团将按规则退款。</p></div>
+            <div class="panel"><h4>成团进度</h4><div class="progress"><span style="width:78%"></span></div><div class="kv"><span>当前件数</span><b>39/50</b></div><div class="kv"><span>截止时间</span><b>06-08 20:00</b></div></div>
+            <div class="panel"><div class="kv"><span>预计提货</span><b>富力花园物业点</b></div><div class="kv"><span>物业减免进度</span><b>+¥108 有效消费</b></div></div>
+          </div><div class="paybar"><button class="btn alt">返回首页</button><button class="btn">邀请邻居</button></div></div></div></article>
+        </div>
+      </section>
+
+      <section class="section" id="benefits">
+        <div class="section-head"><div><h2>用户端：物业费减免与房产绑定</h2><p>消费额度或团队人数达标后，形成物业费专用抵扣权益。</p></div></div>
+        <div class="phone-grid">
+          <article class="card"><div class="label"><b>05 物业费减免中心</b><span>进度激励</span></div><div class="phone"><div class="screen"><div class="status"><span>09:41</span><span>5G</span></div><div class="body">
+            <div class="appbar"><h3>物业费减免</h3><span class="pill gold">本月</span></div>
+            <div class="panel" style="background:var(--dark);color:#fff"><p style="color:rgba(255,255,255,.75)">当前可用减免</p><h4 style="font-size:28px;margin:4px 0">¥80</h4><p style="color:rgba(255,255,255,.75)">已绑定：富力花园 8-1-1201</p></div>
+            <div class="panel"><h4>消费达标奖励</h4><div class="progress"><span style="width:68%"></span></div><p>本月有效消费 ¥680，再消费 ¥320 可获得 ¥50 物业费减免。</p><div class="kv"><span>统计口径</span><b>订单完成且未退款</b></div></div>
+            <div class="panel"><h4>邀请/团队人数</h4><div class="progress"><span style="width:60%"></span></div><p>已邀请 3 人完成首单，再邀请 2 人可获得 ¥30 减免。</p></div>
+          </div><div class="bottom"><span><i data-lucide="home" width="15"></i>首页</span><span><i data-lucide="users" width="15"></i>团购</span><span class="active"><i data-lucide="badge-percent" width="15"></i>减免</span><span><i data-lucide="user" width="15"></i>我的</span></div></div></div></article>
+
+          <article class="card"><div class="label"><b>06 房产绑定</b><span>减免核销前置</span></div><div class="phone"><div class="screen"><div class="status"><span>09:41</span><span>5G</span></div><div class="body">
+            <div class="appbar"><h3>绑定富力房产</h3></div>
+            <div class="panel"><h4>房产信息</h4><div class="kv"><span>小区</span><b>富力花园</b></div><div class="kv"><span>楼栋</span><b>8号楼</b></div><div class="kv"><span>房号</span><b>1201</b></div><div class="kv"><span>身份</span><b>业主/住户</b></div></div>
+            <div class="panel"><h4>审核说明</h4><p>一期可由物业人工审核，审核通过后减免权益才能用于物业费抵扣。</p><div class="kv"><span>审核状态</span><b>待物业确认</b></div></div>
+          </div><div class="paybar"><span></span><button class="btn">提交绑定</button></div></div></div></article>
+
+          <article class="card"><div class="label"><b>07 减免权益详情</b><span>不可提现</span></div><div class="phone"><div class="screen"><div class="status"><span>09:41</span><span>5G</span></div><div class="body">
+            <div class="appbar"><h3>减免权益</h3><span class="pill">可使用</span></div>
+            <div class="panel coupon"><span class="big">¥50</span><b>物业费减免额度</b><p style="color:#8a641c">有效期至 2026-09-30，仅限绑定富力房产缴费使用。</p></div>
+            <div class="panel"><div class="kv"><span>来源</span><b>本月消费满 ¥1000</b></div><div class="kv"><span>绑定房产</span><b>富力花园 1201</b></div><div class="kv"><span>状态</span><b>待同步物业财务</b></div></div>
+          </div><div class="paybar"><button class="btn alt">查看规则</button><button class="btn gold">申请使用</button></div></div></div></article>
+
+          <article class="card"><div class="label"><b>08 我的资产</b><span>券/减免/订单</span></div><div class="phone"><div class="screen"><div class="status"><span>09:41</span><span>5G</span></div><div class="body">
+            <div class="panel" style="background:var(--dark);color:#fff"><h4>138****0921</h4><p style="color:rgba(255,255,255,.75)">富力私域用户 · 已绑定 1 套房产</p></div>
+            <div class="quick"><div><i data-lucide="ticket" width="16"></i>电子券</div><div><i data-lucide="badge-percent" width="16"></i>物业减免</div><div><i data-lucide="package-check" width="16"></i>团购订单</div><div><i data-lucide="map-pin" width="16"></i>自提码</div></div>
+            <div class="panel"><div class="kv"><span>可用电子券</span><b>2 张</b></div><div class="kv"><span>物业减免额度</span><b>¥80</b></div><div class="kv"><span>待自提订单</span><b>1 单</b></div><div class="kv"><span>售后中</span><b>0 单</b></div></div>
+          </div><div class="bottom"><span><i data-lucide="home" width="15"></i>首页</span><span><i data-lucide="users" width="15"></i>团购</span><span><i data-lucide="shopping-cart" width="15"></i>购物车</span><span class="active"><i data-lucide="user" width="15"></i>我的</span></div></div></div></article>
+        </div>
+      </section>
+
+      <section class="section" id="fulfillment">
+        <div class="section-head"><div><h2>用户端：物业自提、物流与售后</h2><p>成团后供应商可发往用户地址或物业站点，用户凭码提货。</p></div></div>
+        <div class="phone-grid">
+          <article class="card"><div class="label"><b>09 订单详情</b><span>主单/子单/团购</span></div><div class="phone"><div class="screen"><div class="status"><span>09:41</span><span>5G</span></div><div class="body">
+            <div class="appbar"><h3>订单详情</h3><span class="pill">已成团</span></div>
+            <div class="panel"><div class="kv"><span>主订单</span><b>GB202606040001</b></div><div class="kv"><span>团队长</span><b>张女士</b></div><div class="kv"><span>履约方式</span><b>物业自提</b></div></div>
+            <div class="panel"><h4>中粮子订单</h4><div class="kv"><span>物流</span><b>已到富力花园站</b></div><div class="kv"><span>状态</span><b>待自提</b></div></div>
+            <div class="panel coupon"><span class="big">A8K2</span><b>自提码</b><p style="color:#8a641c">请向物业站点出示，核销后完成提货。</p></div>
+          </div><div class="paybar"><button class="btn alt">查看物流</button><button class="btn">导航自提点</button></div></div></div></article>
+
+          <article class="card"><div class="label"><b>10 自提点详情</b><span>物业服务中心</span></div><div class="phone"><div class="screen"><div class="status"><span>09:41</span><span>5G</span></div><div class="body">
+            <div class="appbar"><h3>自提点</h3><span class="pill">营业中</span></div>
+            <div class="panel"><h4>富力花园物业服务中心</h4><p>小区东门物业大厅，09:00-20:00 可提货。</p><div class="kv"><span>站点类型</span><b>自提点/配送站</b></div><div class="kv"><span>联系电话</span><b>010-8888 0000</b></div></div>
+            <div class="panel"><h4>待自提商品</h4><div class="row"><img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=300&q=80" alt=""><div><b>中粮粮油组合</b><p>已入库 · 请 3 日内提货</p><span class="price">¥158</span></div></div></div>
+          </div><div class="paybar"><button class="btn alt">联系站点</button><button class="btn">出示提货码</button></div></div></div></article>
+
+          <article class="card"><div class="label"><b>11 售后申请</b><span>按供应商子单</span></div><div class="phone"><div class="screen"><div class="status"><span>09:41</span><span>5G</span></div><div class="body">
+            <div class="appbar"><h3>申请售后</h3></div>
+            <div class="panel"><h4>中粮粮油组合</h4><div class="kv"><span>售后类型</span><b>破损/漏发</b></div><div class="kv"><span>处理方</span><b>中粮供应商</b></div></div>
+            <div class="panel"><h4>凭证上传</h4><p>上传商品破损、漏发、站点异常等图片，平台与供应商协同处理。</p><div class="kv"><span>退款影响</span><b>撤销对应物业减免进度</b></div></div>
+          </div><div class="paybar"><span></span><button class="btn">提交售后</button></div></div></div></article>
+        </div>
+      </section>
+
+      <section class="section" id="leader">
+        <div class="section-head"><div><h2>团队长端：开团、分享、奖励</h2><p>团队长从可团购商品池选择商品开团，奖励由后台规则计算。</p></div></div>
+        <div class="phone-grid">
+          <article class="card"><div class="label"><b>12 团队长工作台</b><span>小程序内</span></div><div class="phone"><div class="screen"><div class="status"><span>09:41</span><span>5G</span></div><div class="body">
+            <div class="appbar"><h3>团队长工作台</h3><span class="pill">已认证</span></div>
+            <div class="panel" style="background:var(--dark);color:#fff"><p style="color:rgba(255,255,255,.75)">本月预估奖励</p><h4 style="font-size:26px">¥1,286</h4><p style="color:rgba(255,255,255,.75)">服务小区：富力花园、富力城</p></div>
+            <div class="quick"><div><i data-lucide="plus-circle" width="16"></i>开团</div><div><i data-lucide="image" width="16"></i>海报</div><div><i data-lucide="receipt-text" width="16"></i>订单</div><div><i data-lucide="wallet" width="16"></i>奖励</div></div>
+            <div class="panel"><div class="kv"><span>进行中团购</span><b>3 个</b></div><div class="kv"><span>有效订单</span><b>126 单</b></div><div class="kv"><span>待结算奖励</span><b>¥880</b></div></div>
+          </div><div class="bottom"><span class="active"><i data-lucide="layout-dashboard" width="15"></i>工作台</span><span><i data-lucide="plus" width="15"></i>开团</span><span><i data-lucide="share-2" width="15"></i>分享</span><span><i data-lucide="wallet" width="15"></i>奖励</span></div></div></div></article>
+
+          <article class="card"><div class="label"><b>13 开启团购</b><span>选品开团</span></div><div class="phone"><div class="screen"><div class="status"><span>09:41</span><span>5G</span></div><div class="body">
+            <div class="appbar"><h3>开启团购</h3></div>
+            <div class="panel"><h4>选择服务小区</h4><div class="chips" style="padding:0"><span class="chip active">富力花园</span><span class="chip">富力城</span></div></div>
+            <div class="panel"><h4>可开团商品</h4><div class="row"><img src="https://images.unsplash.com/photo-1515543904379-3d757afe72e4?auto=format&fit=crop&w=300&q=80" alt=""><div><b>央企粮油组合</b><p>团购 ¥158 · 满50件成团</p><span class="pill gold">奖励 3%</span></div></div></div>
+            <div class="panel"><div class="kv"><span>截止时间</span><b>06-08 20:00</b></div><div class="kv"><span>履约方式</span><b>物业自提/配送到家</b></div></div>
+          </div><div class="paybar"><span></span><button class="btn">开启并生成链接</button></div></div></div></article>
+
+          <article class="card"><div class="label"><b>14 分享海报</b><span>私域传播</span></div><div class="phone"><div class="screen"><div class="status"><span>09:41</span><span>5G</span></div><div class="body">
+            <div class="panel" style="margin-top:16px;background:linear-gradient(180deg,#fff8e8,#e7f3eb)"><span class="pill gold">富力花园团购</span><h4 style="font-size:22px">央企粮油组合 ¥158</h4><p>满 50 件成团，物业自提，消费计入物业费减免。</p><div style="height:120px;background:#fff;border:1px dashed var(--line);display:grid;place-items:center;margin-top:12px;border-radius:8px">小程序码/H5二维码</div></div>
+            <div class="panel"><div class="kv"><span>分享链接</span><b>已生成</b></div><div class="kv"><span>团长奖励</span><b>按有效销售额 3%</b></div></div>
+          </div><div class="paybar"><button class="btn alt">保存海报</button><button class="btn">分享微信</button></div></div></div></article>
+        </div>
+      </section>
+
+      <section class="section" id="admin">
+        <div class="section-head"><div><h2>平台管理端：全业务运营后台</h2><p>统一管理用户、团队长、团购、物业站点、减免规则、订单、结算。</p></div></div>
+        <div class="desktop-grid">
+          <article class="card"><div class="label"><b>15 运营总览</b><span>商城 + 团购 + 减免</span></div><div class="desk"><div class="side"><h3>平台后台</h3><div class="active">工作台</div><div>团购</div><div>团队长</div><div>物业减免</div><div>站点</div><div>结算</div></div><div class="work">
+            <h3>全业务工作台</h3><p>查看交易、团购、物业自提、减免和结算状态。</p>
+            <div class="metrics"><div class="metric"><span>今日销售额</span><b>¥128,420</b></div><div class="metric"><span>团购订单</span><b>486</b></div><div class="metric"><span>物业减免生成</span><b>¥8,260</b></div><div class="metric"><span>待自提</span><b>132</b></div></div>
+            <table><thead><tr><th>业务</th><th>关键数据</th><th>待处理</th><th>状态</th></tr></thead><tbody><tr><td>团购</td><td>进行中 18 个</td><td>未成团 3 个</td><td><span class="pill">正常</span></td></tr><tr><td>物业减免</td><td>待审核 ¥3,200</td><td>房产审核 28</td><td><span class="pill gold">待处理</span></td></tr><tr><td>自提站点</td><td>已入库 226 件</td><td>异常件 5</td><td><span class="pill">正常</span></td></tr></tbody></table>
+          </div></div></article>
+
+          <article class="card"><div class="label"><b>16 团购活动管理</b><span>规则与成团</span></div><div class="desk"><div class="side"><h3>平台后台</h3><div>工作台</div><div class="active">团购</div><div>团队长</div><div>减免</div><div>站点</div><div>结算</div></div><div class="work">
+            <h3>团购活动</h3><p>平台配置商品池、成团规则、奖励规则，团队长从商品池开团。</p>
+            <table><thead><tr><th>活动</th><th>团队长</th><th>小区</th><th>进度</th><th>状态</th></tr></thead><tbody><tr><td>粮油组合团</td><td>张女士</td><td>富力花园</td><td>39/50件</td><td>进行中</td></tr><tr><td>北大荒大米团</td><td>李先生</td><td>富力城</td><td>62/50件</td><td>已成团</td></tr></tbody></table>
+            <div class="split" style="margin-top:10px"><div class="box"><h4>成团规则</h4><div class="kv"><span>按件数</span><b>满50件</b></div><div class="kv"><span>未成团</span><b>自动退款/退券</b></div></div><div class="box"><h4>奖励规则</h4><div class="kv"><span>团队长</span><b>有效销售额 3%</b></div><div class="kv"><span>结算</span><b>后台人工审核</b></div></div></div>
+          </div></div></article>
+
+          <article class="card"><div class="label"><b>17 物业费减免管理</b><span>规则/房产/导出</span></div><div class="desk"><div class="side"><h3>平台后台</h3><div>工作台</div><div>团购</div><div>团队长</div><div class="active">物业减免</div><div>站点</div><div>结算</div></div><div class="work">
+            <h3>物业费减免</h3><p>先按月导出名单给物业财务人工抵扣，二期再对接缴费系统。</p>
+            <div class="metrics"><div class="metric"><span>待审核</span><b>¥3,200</b></div><div class="metric"><span>可使用</span><b>¥18,600</b></div><div class="metric"><span>已核销</span><b>¥6,450</b></div><div class="metric"><span>房产待审</span><b>28</b></div></div>
+            <table><thead><tr><th>用户</th><th>房产</th><th>来源</th><th>额度</th><th>状态</th></tr></thead><tbody><tr><td>138****0921</td><td>富力花园1201</td><td>消费满1000</td><td>¥50</td><td>待同步</td></tr><tr><td>186****7730</td><td>富力城0802</td><td>邀请5人</td><td>¥30</td><td>可使用</td></tr></tbody></table>
+          </div></div></article>
+
+          <article class="card"><div class="label"><b>18 物业站点管理</b><span>自提/前置仓/配送站</span></div><div class="desk"><div class="side"><h3>平台后台</h3><div>工作台</div><div>团购</div><div>物业减免</div><div class="active">站点</div><div>结算</div></div><div class="work">
+            <h3>物业站点</h3><p>一期重点做自提点，前置仓和配送站作为可配置能力后置。</p>
+            <table><thead><tr><th>站点</th><th>类型</th><th>待入库</th><th>待自提</th><th>异常</th></tr></thead><tbody><tr><td>富力花园物业中心</td><td>自提点/配送站</td><td>56</td><td>42</td><td>2</td></tr><tr><td>富力城东门</td><td>自提点</td><td>34</td><td>28</td><td>0</td></tr></tbody></table>
+            <div class="box" style="margin-top:10px"><h4>站点字段</h4><div class="kv"><span>营业时间</span><b>09:00-20:00</b></div><div class="kv"><span>冷藏能力</span><b>待确认</b></div><div class="kv"><span>服务费</span><b>待甲方确认</b></div></div>
+          </div></div></article>
+
+          <article class="card"><div class="label"><b>19 订单与结算</b><span>拆单/奖励/供应商</span></div><div class="desk"><div class="side"><h3>平台后台</h3><div>订单</div><div>售后</div><div class="active">结算</div><div>报表</div></div><div class="work">
+            <h3>多对象结算</h3><p>供应商按销售货款结算，团队长奖励人工审核，物业减免按名单同步。</p>
+            <div class="split"><div class="box"><h4>供应商结算</h4><div class="kv"><span>中粮</span><b>¥75,370</b></div><div class="kv"><span>北大荒</span><b>¥97,200</b></div></div><div class="box"><h4>奖励/减免</h4><div class="kv"><span>团队长待结算</span><b>¥12,680</b></div><div class="kv"><span>物业减免待导出</span><b>¥3,200</b></div></div></div>
+            <table style="margin-top:10px"><thead><tr><th>订单</th><th>类型</th><th>支付</th><th>履约</th><th>影响</th></tr></thead><tbody><tr><td>GB0001</td><td>团购</td><td>券50+微信108</td><td>物业自提</td><td>计入减免¥108</td></tr><tr><td>SC0008</td><td>普通</td><td>支付宝328</td><td>供应商直发</td><td>计入减免¥328</td></tr></tbody></table>
+          </div></div></article>
+        </div>
+      </section>
+
+      <section class="section" id="supplier">
+        <div class="section-head"><div><h2>供应商端：团购供货与履约</h2><p>供应商只看自己的商品和子订单，支持发往用户或物业站点。</p></div></div>
+        <div class="desktop-grid">
+          <article class="card"><div class="label"><b>20 供应商工作台</b><span>中粮直营</span></div><div class="desk"><div class="side"><h3>供应商后台</h3><div class="active">工作台</div><div>团购订单</div><div>发货</div><div>售后</div><div>结算</div></div><div class="work">
+            <h3>中粮直营工作台</h3><p>查看本供应商团购销量、待发货、售后和结算数据。</p>
+            <div class="metrics"><div class="metric"><span>今日订单</span><b>86</b></div><div class="metric"><span>团购待发</span><b>58</b></div><div class="metric"><span>站点配送</span><b>42</b></div><div class="metric"><span>待结算</span><b>¥75,370</b></div></div>
+            <table><thead><tr><th>子订单</th><th>商品</th><th>履约</th><th>目的地</th><th>状态</th></tr></thead><tbody><tr><td>ZL-GB0001-01</td><td>粮油组合</td><td>物业自提</td><td>富力花园站</td><td>待发货</td></tr><tr><td>ZL-SC0008-01</td><td>葵花籽油</td><td>配送到家</td><td>北京朝阳</td><td>已发货</td></tr></tbody></table>
+          </div></div></article>
+
+          <article class="card"><div class="label"><b>21 批量发货</b><span>发往物业站点</span></div><div class="desk"><div class="side"><h3>供应商后台</h3><div>工作台</div><div class="active">发货</div><div>售后</div><div>结算</div></div><div class="work">
+            <h3>团购批量发货</h3><p>成团后按站点汇总发货，降低末端履约成本。</p>
+            <div class="box"><h4>富力花园站点批次</h4><div class="kv"><span>活动</span><b>粮油组合团</b></div><div class="kv"><span>件数</span><b>50 件</b></div><div class="kv"><span>物流公司</span><b>京东物流</b></div><div class="kv"><span>物流单号</span><b>JD783920184620</b></div><button class="btn">确认发货</button> <button class="btn alt">打印站点清单</button></div>
+          </div></div></article>
+        </div>
+      </section>
+
+      <section class="section" id="property">
+        <div class="section-head"><div><h2>物业站点端：入库、核销、异常件</h2><p>物业站点可以用轻量 H5/后台工作台完成扫码入库和提货核销。</p></div></div>
+        <div class="desktop-grid">
+          <article class="card"><div class="label"><b>22 物业站点工作台</b><span>富力花园</span></div><div class="desk"><div class="side"><h3>物业站点</h3><div class="active">工作台</div><div>扫码入库</div><div>待自提</div><div>异常件</div></div><div class="work">
+            <h3>富力花园物业服务中心</h3><p>承担自提点，后续可扩展前置仓/配送站。</p>
+            <div class="metrics"><div class="metric"><span>待入库</span><b>56</b></div><div class="metric"><span>待自提</span><b>42</b></div><div class="metric"><span>今日核销</span><b>18</b></div><div class="metric"><span>异常件</span><b>2</b></div></div>
+            <table><thead><tr><th>自提码</th><th>用户</th><th>商品</th><th>状态</th></tr></thead><tbody><tr><td>A8K2</td><td>138****0921</td><td>粮油组合</td><td>待自提</td></tr><tr><td>B7M5</td><td>186****7730</td><td>北大荒大米</td><td>已核销</td></tr></tbody></table>
+          </div></div></article>
+
+          <article class="card"><div class="label"><b>23 扫码核销</b><span>提货码</span></div><div class="desk"><div class="side"><h3>物业站点</h3><div>工作台</div><div>入库</div><div class="active">核销</div><div>异常件</div></div><div class="work">
+            <h3>自提核销</h3><p>核销后订单进入完成/售后期，自提码不可重复使用。</p>
+            <div class="split"><div class="box"><h4>扫码区域</h4><div style="height:150px;border:1px dashed var(--line);display:grid;place-items:center;border-radius:8px;color:var(--muted)">摄像头扫码/输入 A8K2</div></div><div class="box"><h4>核销结果</h4><div class="kv"><span>用户</span><b>138****0921</b></div><div class="kv"><span>商品</span><b>粮油组合</b></div><div class="kv"><span>状态</span><b>待核销</b></div><button class="btn">确认交付并核销</button></div></div>
+          </div></div></article>
+        </div>
+      </section>
+
+      <section class="section" id="rules">
+        <div class="section-head"><div><h2>全业务规则总览</h2><p>用来和甲方确认边界：哪些一期做，哪些二期做，哪些需要甲方拍板。</p></div></div>
+        <div class="desktop-grid">
+          <article class="card"><div class="label"><b>24 业务流程总览</b><span>四条主线</span></div><div class="box">
+            <div class="flow"><div><i>购</i><span><b>普通购买</b><p>用户小程序/H5下单，微信/支付宝/电子券支付，按供应商拆单履约。</p></span></div><div><i>团</i><span><b>社区团购</b><p>团队长开团，用户参团，满件数/金额成团后供应商发货。</p></span></div><div><i>提</i><span><b>物业自提</b><p>供应商发至物业站点，物业扫码入库，用户凭提货码核销。</p></span></div><div><i>免</i><span><b>物业费减免</b><p>用户有效消费或邀请人数达标，生成物业费专用抵扣权益。</p></span></div></div>
+          </div></article>
+          <article class="card"><div class="label"><b>25 一期建议边界</b><span>降低落地风险</span></div><div class="box">
+            <div class="flow"><div><i>1</i><span><b>先做一级团队长</b><p>不做多级分销，不开放团队长定价，奖励后台人工结算。</p></span></div><div><i>2</i><span><b>先做物业自提点</b><p>前置仓、配送站、冷链库存放二期。</p></span></div><div><i>3</i><span><b>物业费先导出名单</b><p>不一开始对接物业缴费系统，先试点人工核销。</p></span></div><div><i>4</i><span><b>H5先承接团购</b><p>H5优先做落地页、参团、订单查看，复杂工作台以小程序为主。</p></span></div></div>
+          </div></article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const links=[...document.querySelectorAll(".nav a")];
+    const sections=[...document.querySelectorAll(".section")];
+    links.forEach(link=>link.addEventListener("click",()=>{links.forEach(i=>i.classList.remove("active"));link.classList.add("active")}));
+    const obs=new IntersectionObserver(entries=>{const v=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(!v)return;links.forEach(i=>i.classList.toggle("active",i.getAttribute("href")==="#"+v.target.id))},{threshold:[.35,.6]});
+    sections.forEach(s=>obs.observe(s));
+    if(window.lucide) window.lucide.createIcons();
+  </script>
+</body>
+</html>
