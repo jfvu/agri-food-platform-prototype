@@ -69,12 +69,15 @@
         <div class="nav-title">用户端</div>
         <a class="active" href="#user"><i data-lucide="smartphone" width="16"></i>商城与团购</a>
         <a href="#benefits"><i data-lucide="badge-percent" width="16"></i>物业费减免</a>
+        <a href="#member"><i data-lucide="crown" width="16"></i>会员积分</a>
         <a href="#fulfillment"><i data-lucide="map-pin" width="16"></i>自提与售后</a>
         <div class="nav-title">角色端</div>
         <a href="#leader"><i data-lucide="users" width="16"></i>团队长端</a>
+        <a href="#steward"><i data-lucide="message-circle" width="16"></i>管家端</a>
         <a href="#admin"><i data-lucide="layout-dashboard" width="16"></i>平台管理端</a>
         <a href="#supplier"><i data-lucide="truck" width="16"></i>供应商端</a>
         <a href="#property"><i data-lucide="warehouse" width="16"></i>物业站点端</a>
+        <a href="#operation"><i data-lucide="radar" width="16"></i>运营增长</a>
         <div class="nav-title">规则</div>
         <a href="#rules"><i data-lucide="git-branch" width="16"></i>业务规则总览</a>
       </nav>
@@ -84,12 +87,14 @@
       <header class="hero">
         <div>
           <h1>央企农业食材平台全业务高保真原型</h1>
-          <p>覆盖 H5/小程序用户端、团队长开团、自提点核销、物业费减免、平台管理、供应商履约与结算，按完整业务流程组织。</p>
+          <p>覆盖 H5/小程序用户端、会员积分、团队长/KOC、管家触达、自提点核销、物业费减免、平台管理、供应商履约与结算，按完整业务流程组织。</p>
         </div>
         <div class="badges">
           <span class="badge"><i data-lucide="ticket" width="14"></i>电子券</span>
           <span class="badge"><i data-lucide="users" width="14"></i>团队长</span>
+          <span class="badge"><i data-lucide="crown" width="14"></i>会员积分</span>
           <span class="badge"><i data-lucide="badge-percent" width="14"></i>物业费减免</span>
+          <span class="badge"><i data-lucide="message-circle" width="14"></i>管家端</span>
           <span class="badge"><i data-lucide="warehouse" width="14"></i>物业自提</span>
           <span class="badge"><i data-lucide="split" width="14"></i>供应商拆单</span>
         </div>
@@ -158,6 +163,32 @@
         </div>
       </section>
 
+      <section class="section" id="member">
+        <div class="section-head"><div><h2>用户端：会员积分与物业费抵扣</h2><p>新版方案新增三档会员、积分规则与物业费减免双驱动，原型需要展示用户成长路径。</p></div></div>
+        <div class="phone-grid">
+          <article class="card"><div class="label"><b>09 会员中心</b><span>三档成长体系</span></div><div class="phone"><div class="screen"><div class="status"><span>09:41</span><span>5G</span></div><div class="body">
+            <div class="appbar"><h3>业主会员</h3><span class="pill gold">金卡</span></div>
+            <div class="panel" style="background:var(--dark);color:#fff"><p style="color:rgba(255,255,255,.75)">年累计实付消费</p><h4 style="font-size:26px;margin:4px 0">¥3,260</h4><p style="color:rgba(255,255,255,.75)">已达金卡，距钻石还差 ¥9,720</p></div>
+            <div class="panel"><h4>会员等级</h4><div class="kv"><span>普通业主</span><b>注册 + 绑定房号</b></div><div class="kv"><span>金卡会员</span><b>年实付满 ¥2,980</b></div><div class="kv"><span>钻石会员</span><b>年实付满 ¥12,980</b></div></div>
+            <div class="panel"><h4>当前权益</h4><div class="kv"><span>积分加速</span><b>1.2 倍</b></div><div class="kv"><span>物业费固定减免</span><b>本月 ¥50</b></div><div class="kv"><span>福利优先购</span><b>已开启</b></div></div>
+          </div><div class="bottom"><span><i data-lucide="home" width="15"></i>首页</span><span><i data-lucide="users" width="15"></i>团购</span><span class="active"><i data-lucide="crown" width="15"></i>会员</span><span><i data-lucide="user" width="15"></i>我的</span></div></div></div></article>
+
+          <article class="card"><div class="label"><b>10 积分账本</b><span>100积分=1元</span></div><div class="phone"><div class="screen"><div class="status"><span>09:41</span><span>5G</span></div><div class="body">
+            <div class="appbar"><h3>积分账本</h3><span class="pill">可抵扣</span></div>
+            <div class="panel coupon"><span class="big">8,680</span><b>可用积分</b><p style="color:#8a641c">100 积分 = 1 元，可兑换商品、电子券或物业费抵扣额度。</p></div>
+            <div class="panel"><h4>积分获取</h4><div class="kv"><span>生鲜食材</span><b>1元=2积分</b></div><div class="kv"><span>日用百货</span><b>1元=1.5积分</b></div><div class="kv"><span>品牌好物</span><b>1元=1积分</b></div><div class="kv"><span>邀请首单</span><b>阶梯奖励</b></div></div>
+            <div class="panel"><h4>积分使用</h4><div class="kv"><span>商城抵现</span><b>单笔最高30%</b></div><div class="kv"><span>物业费抵扣</span><b>可兑 ¥86</b></div></div>
+          </div><div class="paybar"><button class="btn alt">积分明细</button><button class="btn gold">兑换物业费</button></div></div></div></article>
+
+          <article class="card"><div class="label"><b>11 双驱动减免</b><span>消费 + 拉新</span></div><div class="phone"><div class="screen"><div class="status"><span>09:41</span><span>5G</span></div><div class="body">
+            <div class="appbar"><h3>减免任务</h3><span class="pill gold">本月</span></div>
+            <div class="panel"><h4>消费达标</h4><div class="progress"><span style="width:85%"></span></div><p>本月实付 ¥680，满 ¥800 可抵扣物业费 ¥50。</p><div class="kv"><span>下一档</span><b>¥800 → ¥50</b></div></div>
+            <div class="panel"><h4>拉新达标</h4><div class="progress"><span style="width:60%"></span></div><p>已邀 3 位新业主首单，满 5 位奖励 ¥30 抵扣券。</p><div class="kv"><span>高阶任务</span><b>12位 → ¥80</b></div></div>
+            <div class="panel"><h4>规则提醒</h4><p>订单确认收货且售后期无退款后计入；退款会自动撤销对应减免权益。</p></div>
+          </div><div class="paybar"><button class="btn alt">邀请海报</button><button class="btn">去下单</button></div></div></div></article>
+        </div>
+      </section>
+
       <section class="section" id="fulfillment">
         <div class="section-head"><div><h2>用户端：物业自提、物流与售后</h2><p>成团后供应商可发往用户地址或物业站点，用户凭码提货。</p></div></div>
         <div class="phone-grid">
@@ -201,8 +232,24 @@
 
           <article class="card"><div class="label"><b>14 分享海报</b><span>私域传播</span></div><div class="phone"><div class="screen"><div class="status"><span>09:41</span><span>5G</span></div><div class="body">
             <div class="panel" style="margin-top:16px;background:linear-gradient(180deg,#fff8e8,#e7f3eb)"><span class="pill gold">富力花园团购</span><h4 style="font-size:22px">央企粮油组合 ¥158</h4><p>满 50 件成团，物业自提，消费计入物业费减免。</p><div style="height:120px;background:#fff;border:1px dashed var(--line);display:grid;place-items:center;margin-top:12px;border-radius:8px">小程序码/H5二维码</div></div>
-            <div class="panel"><div class="kv"><span>分享链接</span><b>已生成</b></div><div class="kv"><span>团长奖励</span><b>按有效销售额 3%</b></div></div>
+            <div class="panel"><div class="kv"><span>分享链接</span><b>已生成</b></div><div class="kv"><span>团长奖励</span><b>按品类 3%~15%</b></div><div class="kv"><span>KOC身份</span><b>社区体验官</b></div></div>
           </div><div class="paybar"><button class="btn alt">保存海报</button><button class="btn">分享微信</button></div></div></div></article>
+        </div>
+      </section>
+
+      <section class="section" id="steward">
+        <div class="section-head"><div><h2>管家端：最后100米触达与履约协同</h2><p>新版方案强调“管家直达 + 物业触点”，因此需要把管家端从物业站点端中拆出来展示。</p></div></div>
+        <div class="desktop-grid">
+          <article class="card"><div class="label"><b>15 管家工作台</b><span>社群触达</span></div><div class="desk"><div class="side"><h3>管家端</h3><div class="active">今日任务</div><div>社群触达</div><div>业主分层</div><div>配送协同</div><div>活动报名</div></div><div class="work">
+            <h3>富力花园管家工作台</h3><p>面向物业一线人员，承接社群通知、活动引流、团购提醒和末端履约协同。</p>
+            <div class="metrics"><div class="metric"><span>待触达业主</span><b>286</b></div><div class="metric"><span>团购待提醒</span><b>42</b></div><div class="metric"><span>待自提通知</span><b>18</b></div><div class="metric"><span>活动报名</span><b>96</b></div></div>
+            <table><thead><tr><th>任务</th><th>对象</th><th>渠道</th><th>动作</th></tr></thead><tbody><tr><td>粮油团购还差12件</td><td>A/B层业主</td><td>业主群/1v1微信</td><td>一键发送</td></tr><tr><td>友邻家宴报名</td><td>S层业主</td><td>私信邀约</td><td>生成海报</td></tr><tr><td>自提到货提醒</td><td>待自提用户</td><td>短信/微信</td><td>通知提货</td></tr></tbody></table>
+          </div></div></article>
+
+          <article class="card"><div class="label"><b>16 用户分层运营</b><span>RFM + 社群活跃</span></div><div class="desk"><div class="side"><h3>管家端</h3><div>任务</div><div class="active">用户分层</div><div>KOC培育</div><div>活动IP</div></div><div class="work">
+            <h3>富力私域用户分层</h3><p>按消费价值和社群活跃度划分 S/A/B/C，给管家不同触达策略。</p>
+            <div class="split"><div class="box"><h4>S 超级用户 10%</h4><div class="kv"><span>策略</span><b>1v1管家 + KOC权限</b></div></div><div class="box"><h4>A 高价值 30%</h4><div class="kv"><span>策略</span><b>社群福利 + 积分翻倍</b></div></div><div class="box"><h4>B 潜在 40%</h4><div class="kv"><span>策略</span><b>新人首单返/体验券</b></div></div><div class="box"><h4>C 沉睡 20%</h4><div class="kv"><span>策略</span><b>短信唤醒 + IP活动召回</b></div></div></div>
+          </div></div></article>
         </div>
       </section>
 
@@ -273,13 +320,39 @@
         </div>
       </section>
 
+      <section class="section" id="operation">
+        <div class="section-head"><div><h2>运营增长：一云两端三域四场</h2><p>新版方案从“系统建设”扩展到“私域运营”，原型需展示运营中台如何支撑长期增长。</p></div></div>
+        <div class="desktop-grid">
+          <article class="card"><div class="label"><b>24 私域运营中枢</b><span>一云两端三域四场</span></div><div class="desk"><div class="side"><h3>运营中台</h3><div class="active">策略框架</div><div>用户分层</div><div>内容活动</div><div>商业场景</div></div><div class="work">
+            <h3>富力生活+ 统一数字中枢</h3><p>避免多平台流量分散，以小程序承载交易、权益、活动、履约和数据沉淀。</p>
+            <div class="split"><div class="box"><h4>一云</h4><div class="kv"><span>统一入口</span><b>富力生活+小程序</b></div><div class="kv"><span>沉淀</span><b>用户/订单/权益数据</b></div></div><div class="box"><h4>两端</h4><div class="kv"><span>业主端</span><b>消费与生活服务</b></div><div class="kv"><span>管家端</span><b>触达与履约交付</b></div></div><div class="box"><h4>三域</h4><div class="kv"><span>公域</span><b>微信/抖音引流</b></div><div class="kv"><span>私域</span><b>社群/朋友圈沉淀</b></div><div class="kv"><span>区域</span><b>社区物理场景转化</b></div></div><div class="box"><h4>四场</h4><div class="kv"><span>场景</span><b>电商/家装/文旅/房产</b></div></div></div>
+          </div></div></article>
+
+          <article class="card"><div class="label"><b>25 KOC培育路径</b><span>识别-培育-赋能-裂变</span></div><div class="desk"><div class="side"><h3>运营中台</h3><div>策略</div><div class="active">KOC培育</div><div>佣金</div><div>排行榜</div></div><div class="work">
+            <h3>将热心业主转化为社区带货达人</h3><p>从业委会成员、热心志愿者、超级用户中识别种子用户，赋予社区体验官身份。</p>
+            <div class="flow"><div><i>1</i><span><b>精准识别</b><p>社群活跃、线下活动、消费力和老带新数据识别。</p></span></div><div><i>2</i><span><b>深度培育</b><p>核心选品会、新品首发体验、社区体验官身份。</p></span></div><div><i>3</i><span><b>工具赋能</b><p>一键转发、素材包、专属客服、开团工作台。</p></span></div><div><i>4</i><span><b>激励裂变</b><p>阶梯佣金、销冠奖、物业费抵扣券、线下表彰。</p></span></div></div>
+          </div></div></article>
+
+          <article class="card"><div class="label"><b>26 友邻家宴 IP</b><span>活动转化引擎</span></div><div class="desk"><div class="side"><h3>运营中台</h3><div>策略</div><div>KOC</div><div class="active">活动IP</div><div>直播/下单</div></div><div class="work">
+            <h3>把社区文化活动升级为交易入口</h3><p>保留线下邻里氛围，同时叠加直播、小程序下单、管家配送和新人礼包。</p>
+            <table><thead><tr><th>活动形态</th><th>电商化升级</th><th>转化目标</th></tr></thead><tbody><tr><td>创意市集</td><td>线上直播 + 小程序下单</td><td>全社区覆盖</td></tr><tr><td>围炉煮茶</td><td>主题私享会 + 高客单商品推荐</td><td>茶叶/康养转化</td></tr><tr><td>才艺秀/全家福</td><td>扫码进群 + 裂变海报 + 新人礼包</td><td>拉新与社群沉淀</td></tr></tbody></table>
+          </div></div></article>
+
+          <article class="card"><div class="label"><b>27 商业场景扩展</b><span>四场变现</span></div><div class="desk"><div class="side"><h3>运营中台</h3><div>电商</div><div class="active">场景扩展</div><div>供应链</div><div>合作模式</div></div><div class="work">
+            <h3>从食材电商扩展到业主全生命周期消费</h3><p>原型主链路先聚焦农业食材，但后台和运营模型要预留高客单价场景。</p>
+            <div class="split"><div class="box"><h4>社区电商</h4><div class="kv"><span>高频</span><b>食材/日用/健康</b></div></div><div class="box"><h4>装修家居</h4><div class="kv"><span>高客单</span><b>家装/家电/家居</b></div></div><div class="box"><h4>文旅康养</h4><div class="kv"><span>高信任</span><b>康养/旅游/保健品</b></div></div><div class="box"><h4>房产营销</h4><div class="kv"><span>高价值</span><b>老带新/资产服务</b></div></div></div>
+            <div class="box" style="margin-top:10px"><h4>保健品专区提示</h4><p>新版方案提到保健品作为高毛利利润引擎，可在商品分类和内容运营中预留“健康专区/健康微课堂”。</p></div>
+          </div></div></article>
+        </div>
+      </section>
+
       <section class="section" id="rules">
         <div class="section-head"><div><h2>全业务规则总览</h2><p>用来和甲方确认边界：哪些一期做，哪些二期做，哪些需要甲方拍板。</p></div></div>
         <div class="desktop-grid">
-          <article class="card"><div class="label"><b>24 业务流程总览</b><span>四条主线</span></div><div class="box">
-            <div class="flow"><div><i>购</i><span><b>普通购买</b><p>用户小程序/H5下单，微信/支付宝/电子券支付，按供应商拆单履约。</p></span></div><div><i>团</i><span><b>社区团购</b><p>团队长开团，用户参团，满件数/金额成团后供应商发货。</p></span></div><div><i>提</i><span><b>物业自提</b><p>供应商发至物业站点，物业扫码入库，用户凭提货码核销。</p></span></div><div><i>免</i><span><b>物业费减免</b><p>用户有效消费或邀请人数达标，生成物业费专用抵扣权益。</p></span></div></div>
+          <article class="card"><div class="label"><b>28 业务流程总览</b><span>交易 + 运营</span></div><div class="box">
+            <div class="flow"><div><i>购</i><span><b>普通购买</b><p>用户小程序/H5下单，微信/支付宝/电子券支付，按供应商拆单履约。</p></span></div><div><i>团</i><span><b>社区团购</b><p>团队长/KOC开团，用户参团，满件数/金额成团后供应商发货。</p></span></div><div><i>会</i><span><b>会员积分</b><p>普通、金卡、钻石三级会员，积分可购物抵现或兑换物业费抵扣。</p></span></div><div><i>管</i><span><b>管家触达</b><p>管家按RFM分层触达业主，承接社群、活动、到货和售后提醒。</p></span></div><div><i>提</i><span><b>物业自提</b><p>供应商发至物业站点，物业扫码入库，用户凭提货码核销。</p></span></div><div><i>免</i><span><b>物业费减免</b><p>用户有效消费或拉新达标，生成物业费专用抵扣权益。</p></span></div></div>
           </div></article>
-          <article class="card"><div class="label"><b>25 一期建议边界</b><span>降低落地风险</span></div><div class="box">
+          <article class="card"><div class="label"><b>29 一期建议边界</b><span>降低落地风险</span></div><div class="box">
             <div class="flow"><div><i>1</i><span><b>先做一级团队长</b><p>不做多级分销，不开放团队长定价，奖励后台人工结算。</p></span></div><div><i>2</i><span><b>先做物业自提点</b><p>前置仓、配送站、冷链库存放二期。</p></span></div><div><i>3</i><span><b>物业费先导出名单</b><p>不一开始对接物业缴费系统，先试点人工核销。</p></span></div><div><i>4</i><span><b>H5先承接团购</b><p>H5优先做落地页、参团、订单查看，复杂工作台以小程序为主。</p></span></div></div>
           </div></article>
         </div>
