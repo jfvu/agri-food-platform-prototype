@@ -57,6 +57,8 @@
     table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);font-size:11px}th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}th{color:var(--muted);background:#fbfcfa;font-size:10px}
     .split{display:grid;grid-template-columns:1fr 1fr;gap:10px}.box{padding:10px;background:#fff;border:1px solid var(--line);border-radius:8px}.box h4{margin:0 0 8px;font-size:13px}
     .flow{display:grid;gap:8px}.flow div{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start}.flow i{width:28px;height:28px;display:grid;place-items:center;color:var(--green);background:var(--soft);border-radius:6px;font-style:normal;font-weight:900;font-size:11px}.flow b{display:block;font-size:12px;margin-bottom:2px}.flow p{margin:0;color:var(--muted);font-size:10px;line-height:1.45}
+    .bar-list{display:grid;gap:8px}.bar-item{display:grid;grid-template-columns:96px 1fr 68px;gap:8px;align-items:center;font-size:11px}.bar-track{height:9px;background:#eef3ef;border-radius:20px;overflow:hidden}.bar-track span{display:block;height:100%;background:var(--green)}.bar-item b{text-align:right;font-size:12px}
+    .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.timeline .box{min-height:160px}.timeline .box:nth-child(2){background:var(--gold-soft)}.timeline .box:nth-child(3){background:#e8f0fa}
     @media(max-width:980px){.app{grid-template-columns:1fr}.rail{position:static;height:auto}.hero{flex-direction:column;align-items:start}.badges{justify-content:flex-start}.desktop-grid{grid-template-columns:1fr}}
     @media(max-width:680px){.main{padding:16px}.desk{grid-template-columns:1fr}.side{display:none}.metrics,.split{grid-template-columns:1fr 1fr}}
   </style>
@@ -78,6 +80,7 @@
         <a href="#supplier"><i data-lucide="truck" width="16"></i>供应商端</a>
         <a href="#property"><i data-lucide="warehouse" width="16"></i>物业站点端</a>
         <a href="#operation"><i data-lucide="radar" width="16"></i>运营增长</a>
+        <a href="#decision"><i data-lucide="presentation" width="16"></i>甲方试点决策</a>
         <div class="nav-title">规则</div>
         <a href="#rules"><i data-lucide="git-branch" width="16"></i>业务规则总览</a>
       </nav>
@@ -285,6 +288,18 @@
             <div class="split"><div class="box"><h4>供应商结算</h4><div class="kv"><span>中粮</span><b>¥75,370</b></div><div class="kv"><span>北大荒</span><b>¥97,200</b></div></div><div class="box"><h4>奖励/减免</h4><div class="kv"><span>团队长待结算</span><b>¥12,680</b></div><div class="kv"><span>物业减免待导出</span><b>¥3,200</b></div></div></div>
             <table style="margin-top:10px"><thead><tr><th>订单</th><th>类型</th><th>支付</th><th>履约</th><th>影响</th></tr></thead><tbody><tr><td>GB0001</td><td>团购</td><td>券50+微信108</td><td>物业自提</td><td>计入减免¥108</td></tr><tr><td>SC0008</td><td>普通</td><td>支付宝328</td><td>供应商直发</td><td>计入减免¥328</td></tr></tbody></table>
           </div></div></article>
+
+          <article class="card"><div class="label"><b>20 甲方收益测算</b><span>GMV / 成本 / 净收益</span></div><div class="desk"><div class="side"><h3>平台后台</h3><div>订单</div><div class="active">收益测算</div><div>成本项</div><div>试点复盘</div></div><div class="work">
+            <h3>10小区试点收益模型</h3><p>把甲方关心的交易服务收益、企业购券、供应商结算、团队长奖励和物业费减免放在同一张表里。</p>
+            <div class="metrics"><div class="metric"><span>覆盖户数</span><b>30,000</b></div><div class="metric"><span>激活用户</span><b>4,500</b></div><div class="metric"><span>月度GMV</span><b>¥240,000</b></div><div class="metric"><span>平台收益</span><b>¥24,000-36,000</b></div></div>
+            <div class="split"><div class="box"><h4>收益来源</h4><div class="kv"><span>交易服务收益</span><b>¥24,000</b></div><div class="kv"><span>企业购券采购</span><b>待录入</b></div><div class="kv"><span>供应商合作</span><b>待录入</b></div><div class="kv"><span>物业服务增值</span><b>待确认</b></div></div><div class="box"><h4>成本预估</h4><div class="kv"><span>团队长佣金</span><b>¥8,400</b></div><div class="kv"><span>物业费减免预算</span><b>¥6,000</b></div><div class="kv"><span>站点服务费</span><b>待确认</b></div><div class="kv"><span>活动运营成本</span><b>¥5,000</b></div></div></div>
+          </div></div></article>
+
+          <article class="card"><div class="label"><b>21 运营动作配置</b><span>拉新/促活/转化/留存</span></div><div class="desk"><div class="side"><h3>平台后台</h3><div>活动</div><div class="active">运营配置</div><div>管家任务</div><div>数据复盘</div></div><div class="work">
+            <h3>运营动作转系统规则</h3><p>让甲方看到友邻家宴、管家触达、KOC 分享、首单奖励都能被后台配置、追踪和复盘。</p>
+            <table><thead><tr><th>运营目标</th><th>动作</th><th>系统配置</th><th>追踪指标</th></tr></thead><tbody><tr><td>拉新</td><td>新人首单/邀请奖励</td><td>邀请码、首单券、分享海报</td><td>新客数/首单率</td></tr><tr><td>促活</td><td>友邻家宴/社群福利</td><td>活动报名、活动商品、福利券</td><td>报名/访问/下单</td></tr><tr><td>转化</td><td>限时团购/管家提醒</td><td>成团规则、管家任务、一键触达</td><td>转化率/成团率</td></tr><tr><td>留存</td><td>会员等级/物业减免</td><td>积分账户、减免权益、房产绑定</td><td>复购率/减免核销</td></tr></tbody></table>
+            <div class="box" style="margin-top:10px"><h4>配置提醒</h4><p>所有奖励都要绑定预算上限、有效期、退款撤销和导出/核销状态。</p></div>
+          </div></div></article>
         </div>
       </section>
 
@@ -309,8 +324,9 @@
         <div class="desktop-grid">
           <article class="card"><div class="label"><b>22 物业站点工作台</b><span>富力花园</span></div><div class="desk"><div class="side"><h3>物业站点</h3><div class="active">工作台</div><div>扫码入库</div><div>待自提</div><div>异常件</div></div><div class="work">
             <h3>富力花园物业服务中心</h3><p>承担自提点，后续可扩展前置仓/配送站。</p>
-            <div class="metrics"><div class="metric"><span>待入库</span><b>56</b></div><div class="metric"><span>待自提</span><b>42</b></div><div class="metric"><span>今日核销</span><b>18</b></div><div class="metric"><span>异常件</span><b>2</b></div></div>
+            <div class="metrics"><div class="metric"><span>待入库</span><b>56</b></div><div class="metric"><span>待自提</span><b>42</b></div><div class="metric"><span>今日核销</span><b>18</b></div><div class="metric"><span>核销率</span><b>93.8%</b></div></div>
             <table><thead><tr><th>自提码</th><th>用户</th><th>商品</th><th>状态</th></tr></thead><tbody><tr><td>A8K2</td><td>138****0921</td><td>粮油组合</td><td>待自提</td></tr><tr><td>B7M5</td><td>186****7730</td><td>北大荒大米</td><td>已核销</td></tr></tbody></table>
+            <div class="split" style="margin-top:10px"><div class="box"><h4>试点站点数据</h4><div class="kv"><span>异常件</span><b>2</b></div><div class="kv"><span>超时未提</span><b>6</b></div><div class="kv"><span>站点服务时长</span><b>09:00-20:00</b></div></div><div class="box"><h4>二期扩展能力</h4><div class="kv"><span>前置仓库存</span><b>未开启</b></div><div class="kv"><span>小区内配送</span><b>待评估</b></div><div class="kv"><span>冷藏能力</span><b>待确认</b></div></div></div>
           </div></div></article>
 
           <article class="card"><div class="label"><b>23 扫码核销</b><span>提货码</span></div><div class="desk"><div class="side"><h3>物业站点</h3><div>工作台</div><div>入库</div><div class="active">核销</div><div>异常件</div></div><div class="work">
@@ -343,16 +359,44 @@
             <div class="split"><div class="box"><h4>社区电商</h4><div class="kv"><span>高频</span><b>食材/日用/健康</b></div></div><div class="box"><h4>装修家居</h4><div class="kv"><span>高客单</span><b>家装/家电/家居</b></div></div><div class="box"><h4>文旅康养</h4><div class="kv"><span>高信任</span><b>康养/旅游/保健品</b></div></div><div class="box"><h4>房产营销</h4><div class="kv"><span>高价值</span><b>老带新/资产服务</b></div></div></div>
             <div class="box" style="margin-top:10px"><h4>保健品专区提示</h4><p>新版方案提到保健品作为高毛利利润引擎，可在商品分类和内容运营中预留“健康专区/健康微课堂”。</p></div>
           </div></div></article>
+
+          <article class="card"><div class="label"><b>28 90天运营复盘</b><span>甲方认可度看板</span></div><div class="desk"><div class="side"><h3>运营中台</h3><div>策略</div><div>活动</div><div class="active">试点复盘</div><div>扩面建议</div></div><div class="work">
+            <h3>试点进度与复盘指标</h3><p>用一个运营看板承接 90 天试点，让甲方能持续看到投入产出和扩面依据。</p>
+            <div class="bar-list"><div class="bar-item"><span>激活目标</span><div class="bar-track"><span style="width:72%"></span></div><b>3,240/4,500</b></div><div class="bar-item"><span>团购成团率</span><div class="bar-track"><span style="width:86%"></span></div><b>86%</b></div><div class="bar-item"><span>自提核销率</span><div class="bar-track"><span style="width:94%"></span></div><b>93.8%</b></div><div class="bar-item"><span>复购率</span><div class="bar-track"><span style="width:38%"></span></div><b>38%</b></div><div class="bar-item"><span>减免核销</span><div class="bar-track"><span style="width:61%"></span></div><b>¥6,450</b></div></div>
+            <div class="box" style="margin-top:12px"><h4>扩面判断</h4><p>当成团率、自提核销率、售后异常率和甲方净收益达到目标后，再从 10 个小区扩展到更多富力社区。</p></div>
+          </div></div></article>
+        </div>
+      </section>
+
+      <section class="section" id="decision">
+        <div class="section-head"><div><h2>甲方试点决策：收益、节奏、投入边界</h2><p>这一组页面专门用于甲方汇报，回答“能赚什么、怎么试点、谁投入什么、如何复盘”。</p></div></div>
+        <div class="desktop-grid">
+          <article class="card"><div class="label"><b>29 试点目标看板</b><span>90天闭环验证</span></div><div class="desk"><div class="side"><h3>甲方看板</h3><div class="active">试点目标</div><div>收益测算</div><div>投入边界</div><div>扩面决策</div></div><div class="work">
+            <h3>90天验证五个闭环</h3><p>不追求一开始全量铺开，先证明交易、触达、履约、权益和结算能闭环。</p>
+            <div class="timeline"><div class="box"><h4>1-30天 搭建冷启动</h4><p>选择 3-5 个小区，招募 10-20 名团队长，配置自提点、商品池和基础系统。</p></div><div class="box"><h4>31-60天 活动验证</h4><p>跑 2-3 场团购，验证友邻家宴、管家触达、电子券和自提码核销。</p></div><div class="box"><h4>61-90天 复盘扩展</h4><p>复盘 GMV、复购、拉新、售后、减免、奖励和供应商结算，决定扩面。</p></div></div>
+            <div class="metrics" style="margin-top:10px"><div class="metric"><span>试点小区</span><b>10</b></div><div class="metric"><span>覆盖户数</span><b>30,000</b></div><div class="metric"><span>目标激活</span><b>4,500</b></div><div class="metric"><span>目标GMV</span><b>¥240,000/月</b></div></div>
+          </div></div></article>
+
+          <article class="card"><div class="label"><b>30 双方投入边界</b><span>资源与交付</span></div><div class="desk"><div class="side"><h3>甲方看板</h3><div>试点目标</div><div class="active">投入边界</div><div>协作机制</div><div>待确认</div></div><div class="work">
+            <h3>富力投入 vs 我方交付</h3><p>把资源边界提前讲清楚，方便甲方评估内部协调成本。</p>
+            <table><thead><tr><th>富力侧投入</th><th>具体内容</th><th>我方交付</th><th>具体内容</th></tr></thead><tbody><tr><td>试点小区</td><td>小区名单、物业负责人</td><td>技术平台</td><td>H5、小程序、管理端、供应商端、站点端</td></tr><tr><td>触达渠道</td><td>业主群、公众号、企微、短信</td><td>运营执行</td><td>团购活动、团队长培训、管家素材</td></tr><tr><td>物业站点</td><td>位置、人员、时间、保管规则</td><td>供应链</td><td>粮油、日用、大健康精选商品池</td></tr><tr><td>规则确认</td><td>减免、佣金、结算、发票主体</td><td>数据复盘</td><td>GMV、转化、复购、拉新、减免、结算</td></tr></tbody></table>
+          </div></div></article>
+
+          <article class="card"><div class="label"><b>31 决策清单</b><span>进入报价与排期</span></div><div class="desk"><div class="side"><h3>甲方看板</h3><div>试点目标</div><div>收益测算</div><div>投入边界</div><div class="active">决策清单</div></div><div class="work">
+            <h3>会后需要甲方拍板的关键项</h3><p>这些问题确认后，就能进入更准确的报价、排期和试点启动。</p>
+            <div class="split"><div class="box"><h4>业务规则</h4><div class="kv"><span>团长奖励比例</span><b>待确认</b></div><div class="kv"><span>物业费减免预算</span><b>待确认</b></div><div class="kv"><span>电子券是否计入有效消费</span><b>待确认</b></div><div class="kv"><span>发票主体</span><b>待确认</b></div></div><div class="box"><h4>试点资源</h4><div class="kv"><span>首批小区名单</span><b>待确认</b></div><div class="kv"><span>管家触达渠道</span><b>待确认</b></div><div class="kv"><span>自提点服务时间</span><b>待确认</b></div><div class="kv"><span>物业财务核销方式</span><b>导出名单优先</b></div></div></div>
+            <div class="box" style="margin-top:10px"><h4>建议会议结论</h4><p>先用低风险 90 天试点验证私域交易、物业自提、权益减免和结算复盘，试点成功后再扩展前置仓、配送站和物业费系统自动抵扣。</p></div>
+          </div></div></article>
         </div>
       </section>
 
       <section class="section" id="rules">
         <div class="section-head"><div><h2>全业务规则总览</h2><p>用来和甲方确认边界：哪些一期做，哪些二期做，哪些需要甲方拍板。</p></div></div>
         <div class="desktop-grid">
-          <article class="card"><div class="label"><b>28 业务流程总览</b><span>交易 + 运营</span></div><div class="box">
+          <article class="card"><div class="label"><b>32 业务流程总览</b><span>交易 + 运营</span></div><div class="box">
             <div class="flow"><div><i>购</i><span><b>普通购买</b><p>用户小程序/H5下单，微信/支付宝/电子券支付，按供应商拆单履约。</p></span></div><div><i>团</i><span><b>社区团购</b><p>团队长/KOC开团，用户参团，满件数/金额成团后供应商发货。</p></span></div><div><i>会</i><span><b>会员积分</b><p>普通、金卡、钻石三级会员，积分可购物抵现或兑换物业费抵扣。</p></span></div><div><i>管</i><span><b>管家触达</b><p>管家按RFM分层触达业主，承接社群、活动、到货和售后提醒。</p></span></div><div><i>提</i><span><b>物业自提</b><p>供应商发至物业站点，物业扫码入库，用户凭提货码核销。</p></span></div><div><i>免</i><span><b>物业费减免</b><p>用户有效消费或拉新达标，生成物业费专用抵扣权益。</p></span></div></div>
           </div></article>
-          <article class="card"><div class="label"><b>29 一期建议边界</b><span>降低落地风险</span></div><div class="box">
+          <article class="card"><div class="label"><b>33 一期建议边界</b><span>降低落地风险</span></div><div class="box">
             <div class="flow"><div><i>1</i><span><b>先做一级团队长</b><p>不做多级分销，不开放团队长定价，奖励后台人工结算。</p></span></div><div><i>2</i><span><b>先做物业自提点</b><p>前置仓、配送站、冷链库存放二期。</p></span></div><div><i>3</i><span><b>物业费先导出名单</b><p>不一开始对接物业缴费系统，先试点人工核销。</p></span></div><div><i>4</i><span><b>H5先承接团购</b><p>H5优先做落地页、参团、订单查看，复杂工作台以小程序为主。</p></span></div></div>
           </div></article>
         </div>
